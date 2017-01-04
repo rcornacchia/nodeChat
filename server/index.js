@@ -3,7 +3,8 @@ const express = require('express'),
       bodyParser = require('body-parser');
       logger = require('morgan'),
       config = require('./config/main'),
-      mongoose = require('mongoose');
+      mongoose = require('mongoose'),
+      router = require('./router');
 
 // connect mongoose to mongodb
 mongoose.connect(config.database);
@@ -27,3 +28,5 @@ app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Credentials", "true");
     next();
 });
+
+router(app);
